@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <title>店舗登録</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css_saito/style_for_store_registration.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+           <div class="row">
+                    <h1>店舗登録</h1>
+            </div>
+        </header>
+    </div>
+
+    <hr>
+    
+    <div class="container">
+        <form action="＃" method="get" class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <!--名前-->
+                <div class="form-group">
+                    <label for="name"><span class="label label-danger">必須</span> お名前(店舗責任者）</label>
+                    <input type="text" id="name" name="name" placeholder="例：富士通太郎"  required>
+                </div>
+                <!--店舗名-->
+                <div class="form-group">
+                    <label for='shop-name'><span class="label label-danger">必須</span>　店舗名</label>
+                    <input type="text" id='shop-name' name='shop-name' placeholder="例：富士通商店"  required>
+                </div>
+                <!--電話番号-->
+                <div class="form-group">
+                    <label for="tel"><span class="label label-danger">必須</span> 電話番号</label>
+                    <input type="tel" id="tel" name="tel"  placeholder="例：044-754-2262" required>
+                </div>
+                <!--店舗住所-->
+                <h2>店舗住所</h2>
+                <!--郵便番号-->
+                <div class="form-group">
+                    <label for='postal-code'><span class="label label-danger">必須</span> 郵便番号</label>
+                    <input type="postal-code" id='postal-code' name='postal-code' placeholder="例：2118588" required>
+                </div>
+
+                <!--都道府県-->
+                <div class="form-group">
+                    <label for='postal-code'><span class="label label-danger">必須</span> 都道府県</label>
+                    <input type="address-level1" id='address-level1' name='address-level1' placeholder="例：神奈川県" required>
+                </div>
+                <!--市区町村-->
+                <div class="form-group">
+                    <label for='address-level2'><span class="label label-danger">必須</span> 市区町村</label>
+                    <input type="address-level2" id='address-level2' name='address-level2' placeholder="例：川崎市中原区上小田中" required>
+                </div>
+                <!--番地-->
+                <div class="form-group">
+                    <label for='address-line1'><span class="label label-danger">必須</span> 番地</label>
+                    <input type="address-line1" id='address-line1' name='address-line1' placeholder="例：4-1-1" required>
+                </div>
+                
+                <button type="button" class="btn btn-primary" onclick="location.href='index_for_food_submissions.html'">送信する</button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <footer>
+            <p>&copy; FUJITSU.</p>
+        </footer>
+    </div>
+</body>
+</html>

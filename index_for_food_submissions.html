@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <title>食材投稿ページ</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css_saito/style_for_food_submissions.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+           <div class="row">
+                    <h1>食材投稿ページ</h1>
+            </div>
+        </header>
+    </div>
+
+    <hr>
+    <p>下記項目を入力して食材を登録してください</p>
+    <div class="container">
+        <form action="＃" method="get" class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <!--食材名-->
+                <div class="form-group">
+                    <label for="name"><span class="label label-danger">必須</span> 食材名</label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <!--金額-->
+                <div class="form-group">
+                    <label for="number"><span class="label label-danger">必須</span> 金額</label>
+                    <input type="number" id="number" name="number">
+                </div>
+
+                <!--賞味期限-->
+                <div class="form-group">
+                    <label for='duration'><span class="label label-danger">必須</span>　賞味期限（消費期限）</label>
+                    <input type="date" id='shop-name' name='date' >
+                </div>
+
+                <!--連絡先-->
+                <div class="form-group">
+                    <label for="tel"><span class="label label-danger">必須</span> 連絡先</label>
+                    <input type="tel" id="tel" name="tel">
+                </div>
+
+                <!--コメント-->
+                <div class="form-group">
+                    <p>食材の紹介文を以下に入力してください（任意）</p>
+                    <textarea rows='10' cols="60"></textarea>
+                </div>
+
+                <!--画像読み込み-->
+                <div class='form-group'>
+                    <input type="file" name='image' accept=".png, .jpg, .jpeg, .pdf">
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="location.href='index_for_finished.html'">投稿する</button>
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <footer>
+            <p>&copy; FUJITSU.</p>
+        </footer>
+    </div>
+</body>
+</html>
