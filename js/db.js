@@ -1,90 +1,121 @@
-function getAllFoodstuffPosts()
+async function getAllFoodstuffPosts()
 {
+    var buff = [];
+
     var db = firebase.firestore();
-    db.collection("foodstuff").get().then((query) => 
+    await db.collection("foodstuff").get().then((query) => 
     {
-        var buff = [];
         query.forEach((doc) => 
         {
             var data = doc.data();
-            // var postID = doc.id;
-            buff.push({storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
+            buff.push({postID: doc.id, storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
         });
         console.log(buff);
-        return buff;
     })
     .catch((error)=>
     {
         console.log(`データの取得に失敗しました`);
     });
+
+    return buff;
 }
 
 async function getFoodstuffFromClassification(classification)
 {
+    var buff = [];
+
     var db = firebase.firestore();
     await db.collection("foodstuff").where("Classification", "==", classification)
     .get()
     .then((querySnapshot) => 
     {
-        var buff = [];
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
-            buff.push({storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
+            buff.push({postID: doc.id, storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
         });
         console.log(buff);
-        return buff;
     })
     .catch( (error) => 
     {
         console.log(`データの取得に失敗しました (${error})`);
     });
+
+    return buff;
+}
+
+// ドキュメントのuniqueIDから検索(検索結果をURLパラメータとして保持し、検索する際に)
+async function getFoodstuffFromUniqueID(uniqueID)
+{
+    var buff = [];
+
+    var db = firebase.firestore();
+    await db.collection("foodstuff").get().then((query) => 
+    {
+        query.forEach((doc) => 
+        {
+            var data = doc.data();
+            if(uniqueID == doc.id)
+            buff.push({postID: doc.id, storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
+        });
+        console.log(buff);
+    })
+    .catch((error)=>
+    {
+        console.log(`データの取得に失敗しました`);
+    });
+
+    return buff[0];
 }
 
 // 郵便番号から検索
-function getFoodstuffFromPostalCode(postalCode)
+async function getFoodstuffFromPostalCode(postalCode)
 {
+    var buff = [];
+
     var db = firebase.firestore();
-    db.collection("foodstuff").where("PostalCode", "==", postalCode)
+    await db.collection("foodstuff").where("PostalCode", "==", postalCode)
     .get()
     .then((querySnapshot) => 
     {
-        var buff = [];
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
-            buff.push({storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
+            buff.push({postID: doc.id, storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
         });
-        console.log(buff);
-        return buff;
+        console.log(buff);    
     })
     .catch( (error) => 
     {
         console.log(`データの取得に失敗しました (${error})`);
     });
+
+    return buff;
 }
 
 // storeIdはuidを使用
-function getStoreFromStoreId(storeId)
+async function getStoreFromStoreId(storeId)
 {
+    var buff = [];
+
     var db = firebase.firestore();
-    db.collection("store").where("StoreID", "==", storeId)
+    await db.collection("store").where("StoreID", "==", storeId)
     .get()
     .then((querySnapshot) => 
     {
-        var buff = [];
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
-            buff.push({storeID: data.StoreID, name: data.Name, responsiblePerson: data.ResponsiblePerson, phoneNumber: data.PhoneNumber, email: data.Email, postalCode: data.PostalCode, prefecture: data.Prefecture, municipality: data.Municipality, streetAddress: data.StreetAddress});
+            buff.push({postID: doc.id, storeID: data.StoreID, name: data.Name, responsiblePerson: data.ResponsiblePerson, phoneNumber: data.PhoneNumber, email: data.Email, postalCode: data.PostalCode, prefecture: data.Prefecture, municipality: data.Municipality, streetAddress: data.StreetAddress});
         });
-        console.log(buff);
-        return buff;
+        console.log(buff);    
     })
     .catch( (error) => 
     {
         console.log(`データの取得に失敗しました (${error})`);
     });
+
+    return buff[0];
 }
 
 function getUserEmailFromPostalCode(postalCode)
@@ -98,7 +129,7 @@ function getUserEmailFromPostalCode(postalCode)
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
-            buff.push({email: data.Email, postalCode: data.postalCode});
+            buff.push({postID: doc.id, email: data.Email, postalCode: data.postalCode});
         });
         console.log(buff);
         return buff;
@@ -110,10 +141,10 @@ function getUserEmailFromPostalCode(postalCode)
 }
 
 // データベース側のIDはFirebaseがpostした際に決めるため、PictureURIの項はこちらが作成したimageID
-function postFoodstuff(classification, expirationDate, description, pictureURI)
+async function postFoodstuff(classification, expirationDate, description, pictureURI)
 {
     var db = firebase.firestore();
-    db.collection("foodstuff").add(
+    await db.collection("foodstuff").add(
     {
         StoreID: getUser().uid,
         Classification: classification,

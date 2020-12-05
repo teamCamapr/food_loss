@@ -33,6 +33,5 @@ function save_data(){
 	// console.log(fileName)
 	// sendmail()
 	postFoodstuff(classification, expirationDate, description, file_path);
-	sendmail()
 }
 

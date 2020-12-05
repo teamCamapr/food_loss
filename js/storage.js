@@ -1,11 +1,8 @@
 // 画像DL download('images/17630962a45321.jpg');
-function download(fileName)
+async function download(fileName)
 {
     ref = firebase.storage().ref().child(fileName);
-    ref.getDownloadURL().then((url) => 
-    {
-        document.getElementById('img').src = url;
-    });
+    return await ref.getDownloadURL();
 }
 
 // 画像UP

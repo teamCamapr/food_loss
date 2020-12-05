@@ -39,7 +39,33 @@ $(function(){
 
 });
 
-async function ReceivingUserLinkClicked() {
+function IndexForStoreLinkClicked()
+{
+	// dbに保存
+	save_data();
+
+	// 現在のユーザ情報を取得
+	var user = getUser();
+
+	// 店舗情報を取得
+	var store = getStoreFromStoreId(user.uid);
+
+	// if(store == null || store == undefined) return;
+	
+	// postalCode取得
+	var postalCode = store[0].postalCode;
+
+	// dbから通知対象のユーザ読み込み
+	var users = getUserEmailFromPostalCode(postalCode);
+	// [{email: "test@test.com", postalCode: "1111111"},{email: "test2@test.com", postalCode: "1111112"}]
+	// みたいな感じで入ってます
+
+	// 別当さんのメールスクリプト 下みたいな感じにしてほしい
+	// sendmail(users);
+}
+
+async function ReceivingUserLinkClicked() 
+{
 	await postUser($('#i_email').val(),$('#postal-code').val());
 
     target = document.getElementById("output1");
@@ -68,5 +94,29 @@ async function FoodSearched()
 	var value = query.split('=');
  
 	var q = value[1];
-	console.log(await getFoodstuffFromClassification(q));
+	var result = await getFoodstuffFromClassification(q);
+	result.forEach(async foodstuff => 
+	{
+		var store = await getStoreFromStoreId(foodstuff.storeID);
+		var pictureURL = await download(foodstuff.pictureURI);
+
+		$('#sec01').last().after(
+			'<h3><a href="receiving_food_niku.html?q='+ foodstuff.postID +'" class="link1"><img src="'+ pictureURL +'"><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3>'
+			);
+	});
+}
+
+async function RecievingFood()
+{
+	var query = location.search;
+	var value = query.split('=');
+ 
+	var q = value[1];
+	var foodstuff = await getFoodstuffFromUniqueID(q);
+	var store = await getStoreFromStoreId(foodstuff.storeID);
+	var pictureURL = await download(foodstuff.pictureURI);
+
+	$('#sec03').last().after(
+		'<h3><a class="link1"><img src="'+ pictureURL +'"><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3>'
+		);
 }
