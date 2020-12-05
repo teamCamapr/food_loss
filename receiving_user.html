@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<title>受け取りユーザー登録</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" media="all" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+</head>
+
+<body id="top">
+	<div id="wrapper">
+
+		<div id="sidebar">
+			<div id="sidebarWrap">
+				<h1>食品廃棄受け取りservice</h1>
+				<nav id="mainnav">
+					<p id="menuWrap"><a id="menu"><span id="menuBtn"></span></a></p>
+					<div class="panel">
+						<ul>
+							<li><a href="index.html">TOP</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+        </div>
+<section id="sec01">
+    <br>
+    <br>
+    <br>
+<body>
+    <div class="container">
+        <header>
+            <center><h1>受け取りユーザーの登録</h1></center>
+        </header>
+    </div>
+
+    <hr>
+    
+    <div class="container">
+        <form action="＃" method="get" class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <!--メアド入力フォーム-->
+                <div class='form-group'>
+                    <p class="MS">
+                    <label for='mail'><span class="label label-danger">必須</span>　メールアドレス</label>
+                    <input id="i_email" type="email" name="email"  placeholder="例：fujitsu-internship@e2r.jp" required>
+                    </p>
+                </div>
+                <!--郵便番号-->
+                <div class="form-group">
+                    <p class="MS">
+                    <label for='postal-code'><span class="label label-danger">必須</span> 郵便番号</label>
+                    <input type="postal-code" id='postal-code' name='postal-code' placeholder="例：2118588" required>
+                    </p>
+                </div>
+
+                <h3><a href="javascript:OnLinkClick();" class="btn2-green">登録する</a></h3>
+                <h3><p class="MS" ><a href="index.html" class="link1" id="output1"></a></p>
+                <p class="MS" ><a href="select_food.html" class="link1" id="output2"></a></p></h3>
+                <!--
+                <button type="button" class="btn btn-primary" onclick="location.href='index_for_food_submissions.html'">送信する</button>
+                -->
+            </div>
+        </form>
+    </div>
+</section>
+    <hr>
+
+    <div class="container">
+        <footer id="footer">
+            Copyright(c) 2020 FUJITSU-hackathon teamC-amapri. food_loss
+        </footer>
+    </div>
+</body>
+</html>

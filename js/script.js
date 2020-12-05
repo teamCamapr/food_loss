@@ -1,5 +1,4 @@
 $(function(){
-	
 	var
 	  winW = $(window).width(),
 		winH = $(window).height(),
@@ -39,3 +38,11 @@ $(function(){
 	});
 
 });
+
+function OnLinkClick() {
+    target = document.getElementById("output1");
+	target.innerHTML = "登録完了しました";
+	target2 = document.getElementById("output2");
+    target2.innerHTML = "食品を選ぶ";
+    return false;
+  }
