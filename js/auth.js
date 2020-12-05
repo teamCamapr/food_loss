@@ -1,3 +1,14 @@
+$(function()
+{
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+        } else {
+          // No user is signed in.
+        }
+      });
+});
+
 function login(email, password)
 {
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) 
@@ -13,7 +24,8 @@ function logout()
     {
         // Sign-out successful.
         console.log("logout");
-    }).catch(function(error) 
+    })
+    .catch(function(error) 
     {
         // An error happened.
     });
