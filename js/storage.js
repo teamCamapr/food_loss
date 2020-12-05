@@ -40,7 +40,7 @@ function loadFile()
 {
     var inputFile = document.getElementById('inputfile');
 
-    return inputFile.files;
+    return inputFile.files[0];
 }
 
 // uidを投稿とstoreデータベースに入れて連携
