@@ -107,6 +107,7 @@ function postFoodstuff(classification, expirationDate, description, pictureURI)
 }
 
 // 直前にアカウント登録判定が必要 非同期？
+// flow : await createUser(); postStore();
 function postStore(name, responsiblePerson, phoneNumber, postalCode, prefecture, municipality, streetAddress)
 {
     var db = firebase.firestore();
