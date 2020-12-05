@@ -49,11 +49,11 @@
                 <div class="form-group">
                     <p class="MS">
                     <label for="categories"><span class="label label-danger">必須</span> カテゴリー</label>
-                    <select name='categories'>
-                        <option value="meet">肉類</option>
-                        <option value="fish">魚類</option>
-                        <option value="begitable">野菜</option>
-                        <option value="milk_products">乳製品</option>
+                    <select name='categories' id="categories">
+                        <option value="肉類">肉類</option>
+                        <option value="魚類">魚類</option>
+                        <option value="野菜">野菜</option>
+                        <option value="乳製品">乳製品</option>
                     </select>
                     </p>
                 </div>
@@ -70,16 +70,16 @@
                 <!--コメント-->
                 <div class="form-group">
                     <p class="MS">食材の紹介文を以下に入力してください（任意）</p>
-                    <textarea rows='10' cols="60"></textarea>
+                    <textarea rows='10' cols="60" id="PR"></textarea>
                 </div>
 
                 <!--画像読み込み-->
                 <div class='form-group'>
                     <p class="MS">
-                    <input type="file" name='image' accept=".png, .jpg, .jpeg, .pdf">
+                    <input type="file" name='image' accept=".png, .jpg, .jpeg, .pdf" id="inputfile">
                     </p>
                 </div>
-                <h3><a href="index_for_finished.html" class="btn2-green">投稿する</a></h3>
+                <h3><a href="javascript:save_data();" class="btn2-green">投稿する</a></h3>
                 <!--
                 <button type="button" class="btn btn-primary" onclick="location.href='index_for_finished.html'">投稿する</button>
                 -->
@@ -92,4 +92,24 @@
         Copyright(c) 2020 FUJITSU-hackathon teamC-amapri. food_loss
     </footer>
 </body>
+<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>  
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-storage.js"></script>
+<script>
+  firebase.initializeApp({
+    // 控えておいたapiキーとプロジェクトIDを設定する
+    apiKey: 'AIzaSyBZ7oNKT7DctGy8_JoPB9H6Q2HUO6ApMfQ',
+    projectId: 'foodloss-83f72',
+    storageBucket: 'foodloss-83f72.appspot.com',
+  });
+
+  const db = firebase.firestore();
+</script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script type="text/javascript" src="js/auth.js"></script>
+<script type="text/javascript" src="js/storage.js"></script>
+<script type="text/javascript" src="js/mail.js"></script>
+<script type="text/javascript" src="js/db.js"></script>
 </html>
