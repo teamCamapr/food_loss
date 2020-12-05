@@ -19,6 +19,27 @@ function getAllFoodstuffPosts()
     });
 }
 
+function getFoodstuffFromClassification(postalCode)
+{
+    var db = firebase.firestore();
+    db.collection("foodstuff").where("Classification", "==", classification)
+    .get()
+    .then((querySnapshot) => 
+    {
+        querySnapshot.forEach((doc) => 
+        {
+            var data = doc.data();
+            buff.push({storeID: data.StoreID, classification: data.Classification, expirationData: data.ExpirationDate, description: data.Description, pictureURI: data.PictureURI});
+        });
+        console.log(buff);
+        return buff;
+    })
+    .catch( (error) => 
+    {
+        console.log(`データの取得に失敗しました (${error})`);
+    });
+}
+
 // 郵便番号から検索
 function getFoodstuffFromPostalCode(postalCode)
 {
@@ -78,7 +99,7 @@ function getUserEmailFromPostalCode(postalCode)
         console.log(buff);
         return buff;
     })
-    .catch( (error) => 
+    .catch((error) => 
     {
         console.log(`データの取得に失敗しました (${error})`);
     });
