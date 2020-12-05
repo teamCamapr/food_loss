@@ -119,13 +119,28 @@ section h3{
 	overflow: hidden;
 	font-weight: bold;
 	transition: .4s;
-  }
+}
   
-  .btn1:hover {
+.btn1:hover {
 	background: #d3d3d3;
   }
 
-  .btn2 {
+  .not_btn1 {
+	display: inline-block;
+	text-decoration: none;
+	color: #696969;
+	width: 90px;
+	height: 90px;
+	line-height: 90px;
+	border-radius: 50%;
+	border: solid 2px #696969;
+	text-align: center;
+	overflow: hidden;
+	font-weight: bold;
+	transition: .4s;
+}
+
+.btn2 {
 	display: inline-block;
 	padding: 0.3em 1em;
 	text-decoration: none;
@@ -133,14 +148,29 @@ section h3{
 	border: solid 2px #67c5ff;
 	border-radius: 3px;
 	transition: .4s;
-  }
+}
   
-  .btn2:hover {
+.btn2:hover {
 	background: #67c5ff;
 	color: white;
-  }
+}
 
-  .not_btn2 {
+.btn2-green {
+	display: inline-block;
+	padding: 0.3em 1em;
+	text-decoration: none;
+	color: #00BCD4;
+	border: solid 2px #00BCD4;
+	border-radius: 3px;
+	transition: .4s;
+}
+  
+.btn2-green:hover {
+	background: #00BCD4;
+	color: white;
+}
+
+.not_btn2 {
 	display: inline-block;
 	padding: 0.3em 1em;
 	text-decoration: none;
@@ -148,25 +178,25 @@ section h3{
 	border: solid 2px #67c5ff;
 	border-radius: 3px;
 	transition: .4s;
-  }
+}
 
-  p.MS {
+p.MS {
 	font-family: "ＭＳ 明朝",serif; 
-  }
+}
 
-  .link1 {
+.link1 {
 	display: inline-block;
 	padding: 0.3em;
 	color: #696969;
-  }
-  .link1:hover {
+}
+.link1:hover {
 	animation: zoom .3s;
-  }
-  @keyframes zoom {
+}
+@keyframes zoom {
 	50% {
 		transform: scale(1.05);
 	}
-  }
+}
 
 
 /* RESPONSIVE 設定
