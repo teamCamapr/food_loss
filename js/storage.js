@@ -9,13 +9,13 @@ function download(fileName)
 }
 
 // 画像UP
-function uploadPicture(file, postId)
+function uploadPicture(file)
 {
-    console.log(file)
+    console.log(file);
     // Create a root reference
     var storageRef = firebase.storage().ref();
 
-    var fileName = postId + '.' + file.name.slice((file.name.lastIndexOf('.') - 1 >>> 0) + 2);
+    var fileName = generateImageId() + '.' + file.name.slice((file.name.lastIndexOf('.') - 1 >>> 0) + 2);
 
     var imagesRef = storageRef.child('images/' + fileName);
 
@@ -23,6 +23,8 @@ function uploadPicture(file, postId)
     {
         console.log('Uploaded a blob or file!');
     });
+
+    return 'images/' + fileName;
 }
 
 // 画像ID生成

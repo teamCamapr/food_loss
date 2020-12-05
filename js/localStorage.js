@@ -1,10 +1,10 @@
-// localstorageに市区町村を設定, 取得
-function setUserMunicipality(municipality)
+// localstorageに郵便番号を設定, 取得
+function setUserPostalCode(postalCode)
 {
-    localStorage.setItem("Municipality", municipality);
+    localStorage.setItem("PostalCode", postalCode);
 }
 
-function loadUserMunicipality()
+function loadUserPostalCode()
 {
-    return localStorage.getItem("Municipality");
+    return localStorage.getItem("PostalCode");
 }
