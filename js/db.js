@@ -19,13 +19,14 @@ function getAllFoodstuffPosts()
     });
 }
 
-function getFoodstuffFromClassification(postalCode)
+async function getFoodstuffFromClassification(classification)
 {
     var db = firebase.firestore();
-    db.collection("foodstuff").where("Classification", "==", classification)
+    await db.collection("foodstuff").where("Classification", "==", classification)
     .get()
     .then((querySnapshot) => 
     {
+        var buff = [];
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
@@ -48,6 +49,7 @@ function getFoodstuffFromPostalCode(postalCode)
     .get()
     .then((querySnapshot) => 
     {
+        var buff = [];
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
@@ -70,6 +72,7 @@ function getStoreFromStoreId(storeId)
     .get()
     .then((querySnapshot) => 
     {
+        var buff = [];
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
@@ -91,6 +94,7 @@ function getUserEmailFromPostalCode(postalCode)
     .get()
     .then((querySnapshot) => 
     {
+        var buff = [];
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
@@ -129,11 +133,11 @@ function postFoodstuff(classification, expirationDate, description, pictureURI)
 
 // 直前にアカウント登録判定が必要 非同期？
 // flow : await createUser(); postStore();
-function postStore(name, responsiblePerson, phoneNumber, postalCode, prefecture, municipality, streetAddress)
+async function postStore(name, responsiblePerson, phoneNumber, postalCode, prefecture, municipality, streetAddress)
 {
     var db = firebase.firestore();
     var userData = getUser();
-    db.collection("foodstuff").add(
+    await db.collection("store").add(
     {
         StoreID: userData.uid,
         Name: name,
@@ -155,10 +159,10 @@ function postStore(name, responsiblePerson, phoneNumber, postalCode, prefecture,
     });
 }
 
-function postUser(email, postalCode)
+async function postUser(email, postalCode)
 {
     var db = firebase.firestore();
-    db.collection("user").add(
+    await db.collection("user").add(
     {
         Email: email,
         PostalCode: postalCode,
