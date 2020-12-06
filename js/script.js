@@ -71,15 +71,21 @@ async function IndexForStoreLinkClicked()
 	
 }
 
-async function MypageLoaded()
+function MypageLoaded()
 {
-	var user = getUser();
-	console.log(user);
-	console.log(firebase.auth());
-	console.log(firebase.auth().currentUser[0]);
-	//var store = await getStoreFromStoreId(user.uid);
-	console.log(store);
-	$("#ShopName").val(store.name);
+	firebase.auth().onAuthStateChanged(function(user) 
+	{
+		if (user) 
+		{
+			var store = await getStoreFromStoreId(user.uid);
+			$("#ShopName").val(store.name);
+          console.log(user);
+		} 
+		else 
+		{
+          // No user is signed in.
+        }
+    });
 }
 
 async function ReceivingUserLinkClicked() 
