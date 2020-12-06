@@ -123,7 +123,7 @@ console.log(index);
 
 function FoodSearchLinkClicked()
 {
-	window.location.href = 'food_searched.html?q=' +  $('#classification').val();
+	window.location.href = 'food_searched.html?q=' +  encodeURIComponent($('#classification').val());
 }
 
 async function FoodSearched()
@@ -131,7 +131,8 @@ async function FoodSearched()
 	var query = location.search;
 	var value = query.split('=');
  
-	var q = value[1];
+	var q = decodeURIComponent(value[1]);
+	console.log(q);
 	var result = await getFoodstuffFromClassification(q);
 	result.forEach(async foodstuff => 
 	{
