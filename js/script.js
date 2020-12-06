@@ -57,6 +57,7 @@ async function IndexForStoreLinkClicked()
 
 	// dbから通知対象のユーザ読み込み
 	var users = await getUserEmailFromPostalCode(postalCode);
+	console.log(users);
 	// [{email: "test@test.com", postalCode: "1111111"},{email: "test2@test.com", postalCode: "1111112"}]
 	// みたいな感じで入ってます
 
@@ -68,7 +69,10 @@ async function MypageLoaded()
 {
 	var user = getUser();
 	console.log(user);
-	var store = await getStoreFromStoreId(user.uid);
+	console.log(firebase.auth());
+	console.log(firebase.auth().currentUser[0]);
+	//var store = await getStoreFromStoreId(user.uid);
+	console.log(store);
 	$("#ShopName").val(store.name);
 }
 

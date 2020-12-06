@@ -120,24 +120,28 @@ async function getStoreFromStoreId(storeId)
 
 async function getUserEmailFromPostalCode(postalCode)
 {
+    var buff = [];
+    
     var db = firebase.firestore();
     await db.collection("user").where("PostalCode", "==", postalCode)
     .get()
     .then((querySnapshot) => 
     {
-        var buff = [];
+        
         querySnapshot.forEach((doc) => 
         {
             var data = doc.data();
             buff.push({postID: doc.id, email: data.Email, postalCode: data.postalCode});
         });
         console.log(buff);
-        return buff;
+        
     })
     .catch((error) => 
     {
         console.log(`データの取得に失敗しました (${error})`);
     });
+
+    return buff;
 }
 
 // データベース側のIDはFirebaseがpostした際に決めるため、PictureURIの項はこちらが作成したimageID
