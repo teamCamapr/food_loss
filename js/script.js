@@ -57,6 +57,7 @@ async function IndexForStoreLinkClicked()
 
 	// dbから通知対象のユーザ読み込み
 	var users = await getUserEmailFromPostalCode(postalCode);
+	console.log(users);
 	// [{email: "test@test.com", postalCode: "1111111"},{email: "test2@test.com", postalCode: "1111112"}]
 	// みたいな感じで入ってます
 
@@ -68,7 +69,10 @@ async function MypageLoaded()
 {
 	var user = getUser();
 	console.log(user);
-	var store = await getStoreFromStoreId(user.uid);
+	console.log(firebase.auth());
+	console.log(firebase.auth().currentUser[0]);
+	//var store = await getStoreFromStoreId(user.uid);
+	console.log(store);
 	$("#ShopName").val(store.name);
 }
 
@@ -81,7 +85,7 @@ async function ReceivingUserLinkClicked()
 	target2 = document.getElementById("output2");
     target2.innerHTML = "食品を選ぶ -最新情報-";
     return false;
-  }
+}
 
 async function IndexForStoreRegistrationLinkClicked()
 {
@@ -89,6 +93,26 @@ async function IndexForStoreRegistrationLinkClicked()
 	await postStore($('#shop-name').val(),$('#name').val(),$('#tel').val(),$('#postal-code').val(),$('#address-level1').val(),$('#address-level2').val(),$('#address-line1').val());
 
 	window.location.href = 'index_for_store_finished.html';
+}
+
+async function SelectFoodLoaded()
+{
+	var foodstuffs = await getAllFoodstuffPosts();
+	var latestFoodstuff = foodstuffs[0];
+	var latestStore = await getStoreFromStoreId(latestFoodstuff.storeID);
+	var latestPictureURL = await download(latestFoodstuff.pictureURI);
+	$('#sec01').last().after(
+		'<center><h3><a href="receiving_food_niku.html?q='+ latestFoodstuff.postID +'" class="link1"><p class="size1"><img src="'+ latestPictureURL +'"></p><p class="MS">'+latestFoodstuff.description+'</p><p class="MS">'+latestStore.prefecture+latestStore.municipality+'/'+latestStore.name+'</p></a></h3></center>'
+		);
+
+	var index = Math.floor(Math.random() * Math.floor(foodstuffs.length));
+	var foodstuff = foodstuffs[index];
+	var store = await getStoreFromStoreId(foodstuff.storeID);
+	var pictureURL = await download(foodstuff.pictureURI);
+console.log(index);
+	$('#sec02').last().after(
+		'<center><h3><a class="link1"><p class="size1"><img src="'+ pictureURL +'"></p><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3></center>'
+		);
 }
 
 function FoodSearchLinkClicked()
