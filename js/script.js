@@ -54,15 +54,21 @@ async function IndexForStoreLinkClicked()
 	
 	// postalCode取得
 	var postalCode = store.postalCode;
-
+	
 	// dbから通知対象のユーザ読み込み
 	var users = await getUserEmailFromPostalCode(postalCode);
 	console.log(users);
 	// [{email: "test@test.com", postalCode: "1111111"},{email: "test2@test.com", postalCode: "1111112"}]
 	// みたいな感じで入ってます
-
+	// console.log(users)
 	// 別当さんのメールスクリプト 下みたいな感じにしてほしい
-	// sendmail(users);
+	for (let index = 0; index < users.length; index++) {
+		
+		sendmail(users[index].email);
+		
+	}
+	location.href = "index_for_finished.html"
+	
 }
 
 async function MypageLoaded()
