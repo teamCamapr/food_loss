@@ -73,13 +73,12 @@ async function IndexForStoreLinkClicked()
 
 function MypageLoaded()
 {
-	firebase.auth().onAuthStateChanged(function(user) 
+	firebase.auth().onAuthStateChanged(async function(user) 
 	{
 		if (user) 
 		{
 			var store = await getStoreFromStoreId(user.uid);
-			$("#ShopName").val(store.name);
-          console.log(user);
+			$("#ShopName").text(store.name);
 		} 
 		else 
 		{
