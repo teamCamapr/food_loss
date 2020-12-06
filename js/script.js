@@ -77,9 +77,9 @@ async function ReceivingUserLinkClicked()
 	await postUser($('#i_email').val(),$('#postal-code').val());
 
     target = document.getElementById("output1");
-	target.innerHTML = "登録完了しました";
+	target.innerHTML = "登録完了しました -top-";
 	target2 = document.getElementById("output2");
-    target2.innerHTML = "食品を選ぶ";
+    target2.innerHTML = "食品を選ぶ -最新情報-";
     return false;
   }
 
