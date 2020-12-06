@@ -73,12 +73,17 @@ async function IndexForStoreLinkClicked()
 
 function MypageLoaded()
 {
+	var postFoodstuffButton = document.getElementById('PostFoodstuff');
+	var origStyle = postFoodstuffButton.style.display;
+	postFoodstuffButton.style.display = 'none';
+
 	firebase.auth().onAuthStateChanged(async function(user) 
 	{
 		if (user) 
 		{
 			var store = await getStoreFromStoreId(user.uid);
 			$("#ShopName").text(store.name);
+			postFoodstuffButton.style.display = origStyle;
 		} 
 		else 
 		{
