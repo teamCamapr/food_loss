@@ -64,7 +64,7 @@ async function IndexForStoreLinkClicked()
 	// 別当さんのメールスクリプト 下みたいな感じにしてほしい
 	for (let index = 0; index < users.length; index++) {
 		
-		sendmail(users[index].email);
+		await sendmail(users[index].email);
 		
 	}
 	location.href = "index_for_finished.html"

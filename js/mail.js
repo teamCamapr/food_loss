@@ -1,11 +1,11 @@
-function sendmail(user_email) {
+async function sendmail(user_email) {
 // const user_email = "b.iku1112@ezweb.ne.jp";
 // const user_city = "川崎市";
 // const store_city = "川崎市";
 // console.log(user)
 //ユーザーの町と店の町が一致したら
 // if (user_city==store_city) {
-  Email.send({
+  await Email.send({
     Host : "smtp.elasticemail.com",
     Username : "7416094@gmail.com",
     Password : "4BD91BDD0E1AB729BF23724FC89BFD4A818D",
