@@ -39,7 +39,7 @@ $(function(){
 
 });
 
-function IndexForStoreLinkClicked()
+async function IndexForStoreLinkClicked()
 {
 	// dbに保存
 	save_data();
@@ -48,20 +48,28 @@ function IndexForStoreLinkClicked()
 	var user = getUser();
 
 	// 店舗情報を取得
-	var store = getStoreFromStoreId(user.uid);
+	var store = await getStoreFromStoreId(user.uid);
 
 	// if(store == null || store == undefined) return;
 	
 	// postalCode取得
-	var postalCode = store[0].postalCode;
+	var postalCode = store.postalCode;
 
 	// dbから通知対象のユーザ読み込み
-	var users = getUserEmailFromPostalCode(postalCode);
+	var users = await getUserEmailFromPostalCode(postalCode);
 	// [{email: "test@test.com", postalCode: "1111111"},{email: "test2@test.com", postalCode: "1111112"}]
 	// みたいな感じで入ってます
 
 	// 別当さんのメールスクリプト 下みたいな感じにしてほしい
 	// sendmail(users);
+}
+
+async function MypageLoaded()
+{
+	var user = getUser();
+	console.log(user);
+	var store = await getStoreFromStoreId(user.uid);
+	$("#ShopName").val(store.name);
 }
 
 async function ReceivingUserLinkClicked() 

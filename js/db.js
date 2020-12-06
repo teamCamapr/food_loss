@@ -118,10 +118,10 @@ async function getStoreFromStoreId(storeId)
     return buff[0];
 }
 
-function getUserEmailFromPostalCode(postalCode)
+async function getUserEmailFromPostalCode(postalCode)
 {
     var db = firebase.firestore();
-    db.collection("user").where("PostalCode", "==", postalCode)
+    await db.collection("user").where("PostalCode", "==", postalCode)
     .get()
     .then((querySnapshot) => 
     {
