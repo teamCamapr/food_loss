@@ -101,7 +101,7 @@ async function FoodSearched()
 		var pictureURL = await download(foodstuff.pictureURI);
 
 		$('#sec01').last().after(
-			'<h3><a href="receiving_food_niku.html?q='+ foodstuff.postID +'" class="link1"><img src="'+ pictureURL +'"><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3>'
+			'<center><h3><a href="receiving_food_niku.html?q='+ foodstuff.postID +'" class="link1"><p class="size1"><img src="'+ pictureURL +'"></p><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3></center>'
 			);
 	});
 }
@@ -117,6 +117,6 @@ async function RecievingFood()
 	var pictureURL = await download(foodstuff.pictureURI);
 
 	$('#sec03').last().after(
-		'<h3><a class="link1"><img src="'+ pictureURL +'"><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3>'
+		'<center><h3><a class="link1"><p class="size1"><img src="'+ pictureURL +'"></p><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3></center>'
 		);
 }

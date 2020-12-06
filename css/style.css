@@ -106,6 +106,14 @@ section h3{
 	text-align: center;
 }
 
+h4{
+	width: 60%;
+	margin: 70px auto;
+	font-size: 16px;
+	font-weight:normal;
+	text-align: center;
+}
+
 .btn1 {
 	display: inline-block;
 	text-decoration: none;
@@ -196,6 +204,11 @@ p.MS {
 	50% {
 		transform: scale(1.05);
 	}
+}
+
+p.size1 img {
+    width: 600px;
+    height:400px; 
 }
 
 
