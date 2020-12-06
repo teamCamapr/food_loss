@@ -102,7 +102,7 @@ async function SelectFoodLoaded()
 	var latestStore = await getStoreFromStoreId(latestFoodstuff.storeID);
 	var latestPictureURL = await download(latestFoodstuff.pictureURI);
 	$('#sec01').last().after(
-		'<center><h3><a href="receiving_food_niku.html?q='+ latestFoodstuff.postID +'" class="link1"><p class="size1"><img src="'+ latestPictureURL +'"></p><p class="MS">'+latestFoodstuff.description+'</p><p class="MS">'+latestStore.prefecture+latestStore.municipality+'/'+latestStore.name+'</p></a></h3></center>'
+		'<center><h3><a href="receiving_food.html?q='+ latestFoodstuff.postID +'" class="link1"><p class="size1"><img src="'+ latestPictureURL +'"></p><p class="MS">'+latestFoodstuff.description+'</p><p class="MS">'+latestStore.prefecture+latestStore.municipality+'/'+latestStore.name+'</p></a></h3></center>'
 		);
 
 	var index = Math.floor(Math.random() * Math.floor(foodstuffs.length));
@@ -133,7 +133,7 @@ async function FoodSearched()
 		var pictureURL = await download(foodstuff.pictureURI);
 
 		$('#sec01').last().after(
-			'<center><h3><a href="receiving_food_niku.html?q='+ foodstuff.postID +'" class="link1"><p class="size1"><img src="'+ pictureURL +'"></p><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3></center>'
+			'<center><h3><a href="receiving_food.html?q='+ foodstuff.postID +'" class="link1"><p class="size1"><img src="'+ pictureURL +'"></p><p class="MS">'+foodstuff.description+'</p><p class="MS">'+store.prefecture+store.municipality+'/'+store.name+'</p></a></h3></center>'
 			);
 	});
 }
